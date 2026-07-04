@@ -1,0 +1,84 @@
+{
+	"name": "data_transformation",
+	"properties": {
+		"activities": [
+			{
+				"name": "Silver",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Bronze",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/sagarghoshit@gmail.com/New_Azure_Project/Silver notebook"
+				},
+				"linkedServiceName": {
+					"referenceName": "ADB_LS",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Gold",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Silver",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/sagarghoshit@gmail.com/New_Azure_Project/Gold Notebook"
+				},
+				"linkedServiceName": {
+					"referenceName": "ADB_LS",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Bronze",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/sagarghoshit@gmail.com/New_Azure_Project/Bronze notbook"
+				},
+				"linkedServiceName": {
+					"referenceName": "ADB_LS",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2026-07-04T20:26:55Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
