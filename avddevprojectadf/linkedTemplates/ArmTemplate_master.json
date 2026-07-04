@@ -1,0 +1,98 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "avddevprojectadf"
+		},
+		"ADB_LS_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'ADB_LS'"
+		},
+		"ADLS_LS_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ADLS_LS'"
+		},
+		"Azure_sql_db_LS_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Azure_sql_db_LS'"
+		},
+		"ADB_LS_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0704-183850-p8d5e5l2"
+		},
+		"ADLS_LS_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://avddevstorageacc2026.dfs.core.windows.net/"
+		},
+		"Azure_sql_db_LS_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "myprojectdatabase.database.windows.net"
+		},
+		"Azure_sql_db_LS_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "avddbserver2026"
+		},
+		"Azure_sql_db_LS_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "avduser"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "avddevprojectadf_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"ADB_LS_accessToken": {
+						"value": "[parameters('ADB_LS_accessToken')]"
+					},
+					"ADLS_LS_accountKey": {
+						"value": "[parameters('ADLS_LS_accountKey')]"
+					},
+					"Azure_sql_db_LS_password": {
+						"value": "[parameters('Azure_sql_db_LS_password')]"
+					},
+					"ADB_LS_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('ADB_LS_properties_typeProperties_existingClusterId')]"
+					},
+					"ADLS_LS_properties_typeProperties_url": {
+						"value": "[parameters('ADLS_LS_properties_typeProperties_url')]"
+					},
+					"Azure_sql_db_LS_properties_typeProperties_server": {
+						"value": "[parameters('Azure_sql_db_LS_properties_typeProperties_server')]"
+					},
+					"Azure_sql_db_LS_properties_typeProperties_database": {
+						"value": "[parameters('Azure_sql_db_LS_properties_typeProperties_database')]"
+					},
+					"Azure_sql_db_LS_properties_typeProperties_userName": {
+						"value": "[parameters('Azure_sql_db_LS_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

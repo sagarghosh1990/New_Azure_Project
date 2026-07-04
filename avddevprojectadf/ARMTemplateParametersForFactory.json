@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "avddevprojectadf"
+		},
+		"ADB_LS_accessToken": {
+			"value": ""
+		},
+		"ADLS_LS_accountKey": {
+			"value": ""
+		},
+		"Azure_sql_db_LS_password": {
+			"value": ""
+		},
+		"ADB_LS_properties_typeProperties_existingClusterId": {
+			"value": "0704-183850-p8d5e5l2"
+		},
+		"ADLS_LS_properties_typeProperties_url": {
+			"value": "https://avddevstorageacc2026.dfs.core.windows.net/"
+		},
+		"Azure_sql_db_LS_properties_typeProperties_server": {
+			"value": "myprojectdatabase.database.windows.net"
+		},
+		"Azure_sql_db_LS_properties_typeProperties_database": {
+			"value": "avddbserver2026"
+		},
+		"Azure_sql_db_LS_properties_typeProperties_userName": {
+			"value": "avduser"
+		}
+	}
+}
